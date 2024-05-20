@@ -1,4 +1,4 @@
-export enum Status {
+export enum STATUS {
     SUCCESS = 200,
     CREATED = 201,
     ACCEPTED = 202,
