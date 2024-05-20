@@ -1,8 +1,8 @@
-# Admin Backend
+# Express.js, Typescript, MongoDB Starter Template
 
 ## Description
 
-This project is the backend for an admin system. It provides APIs for user authentication, authorization, and other administrative functionalities.
+This repository provides a starter template for building applications with Express.js, TypeScript, and Mongoose. It sets up a structured project architecture, allowing you to quickly start developing robust and scalable applications with TypeScript's type safety and Mongoose's powerful MongoDB object modeling.
 
 ## Installation
 
@@ -32,12 +32,6 @@ npm install
 npm run dev
 ```
 
-### Generating Mongoose Types
-
-```bash
-npm run mtgen
-```
-
 ### Building the Project for production
 
 ```bash
@@ -52,4 +46,4 @@ npm run start
 
 ## Configuration
 
-Environment variables can be configured using a `.env` file in the root directory. Refer to `.env.example` for a list of variables and their default values.
+Environment variables can be configured using a `.env` file in the root directory. Refer to `.env.test` for a list of variables and their default values.
