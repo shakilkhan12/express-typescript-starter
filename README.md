@@ -9,7 +9,7 @@ This repository provides a starter template for building applications with Expre
 ### 1. Clone the repository:
 
 ```bash
-git clone repo_name
+git clone https://github.com/shakilkhan12/express-typescript-starter.git
 ```
 
 ### 2. Navigate into the project directory:
