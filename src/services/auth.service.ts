@@ -1,8 +1,9 @@
 import { AuthModel } from "@/models";
+import { IUser } from "@/typescript/interfaces";
 import { HttpException } from "@/utils/HttpException.utils";
 
 class AuthService {
-   protected register = async (userData: any) => {
+  protected register = async <T extends IUser>(userData: T) => {
     const checkUser = await AuthModel.findOne({ email: userData.email });
     if (checkUser) {
       throw new HttpException(400, "User already exists");
@@ -13,21 +14,21 @@ class AuthService {
       user: user,
       message: "Admin created successfully",
     }
-   }
-   protected login = async (userData: any) => {
-      const user = await AuthModel.findOne({ email: userData.email });
-      if (!user) {
-        throw new HttpException(404, "User not found");
-      }
-      const isMatch = await user.comparePassword(userData.password);
-      if (!isMatch) {
-        throw new HttpException(401, "Password is incorrect");
-      }
-      const token = user.generateAuthToken();
-      return {
-        token,
-        user
-      }    
-   }
+  }
+  protected login = async (userData: any) => {
+    const user = await AuthModel.findOne({ email: userData.email });
+    if (!user) {
+      throw new HttpException(404, "User not found");
+    }
+    const isMatch = await user.comparePassword(userData.password);
+    if (!isMatch) {
+      throw new HttpException(401, "Password is incorrect");
+    }
+    const token = user.generateAuthToken();
+    return {
+      token,
+      user
+    }
+  }
 }
 export default AuthService;
