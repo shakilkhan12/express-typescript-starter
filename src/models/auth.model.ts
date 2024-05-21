@@ -3,13 +3,7 @@ import { model, Schema, Document, Model } from "mongoose";
 import { HttpException } from "@/utils/HttpException.utils";
 import { comparePassword, hashPassword } from "@/utils/password.utils";
 import { CONFIG } from "@/config";
-
-// Define the interface for the document
-interface IUser {
-  name: string;
-  email: string;
-  password: string;
-}
+import { IUser } from "@/typescript/interfaces";
 
 // Define an interface that extends Mongoose's Document to include the methods
 interface IUserDocument extends IUser, Document {
@@ -19,7 +13,6 @@ interface IUserDocument extends IUser, Document {
 
 // Define an interface for the model
 interface IUserModel extends Model<IUserDocument> {}
-
 // Create the schema
 const userSchema = new Schema<IUserDocument>({
   name: { type: String, required: true },
@@ -85,8 +78,7 @@ userSchema.methods.generateAuthToken = function (expiresIn = "1w") {
 };
 
 // Create the model
-const UserModel: IUserModel = model<IUserDocument, IUserModel>("User", userSchema);
+const AuthModel: IUserModel = model<IUserDocument, IUserModel>("User", userSchema);
 
-UserModel.createIndexes({ unique: true });
-
-export { UserModel, IUser };
+AuthModel.createIndexes({ unique: true });
+export { AuthModel };

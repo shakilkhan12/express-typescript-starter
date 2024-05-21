@@ -1,13 +1,13 @@
-import { UserModel } from "@/models";
+import { AuthModel } from "@/models";
 import { HttpException } from "@/utils/HttpException.utils";
 
 class AuthService {
    protected register = async (userData: any) => {
-    const checkUser = await UserModel.findOne({ email: userData.email });
+    const checkUser = await AuthModel.findOne({ email: userData.email });
     if (checkUser) {
       throw new HttpException(400, "User already exists");
     }
-    const user = new UserModel(userData);
+    const user = new AuthModel(userData);
     await user.save();
     return {
       user: user,
@@ -15,7 +15,7 @@ class AuthService {
     }
    }
    protected login = async (userData: any) => {
-      const user = await UserModel.findOne({ email: userData.email });
+      const user = await AuthModel.findOne({ email: userData.email });
       if (!user) {
         throw new HttpException(404, "User not found");
       }
