@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { testRouter } from "@routes/test.routes";
+import { authRouter } from "./auth.routes";
 const mainRouter = Router();
-mainRouter.use('/test', testRouter)
+mainRouter.use('/auth', authRouter)
 export default mainRouter;
