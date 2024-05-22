@@ -3,7 +3,7 @@ import { IUser } from "@/typescript/interfaces";
 import { HttpException } from "@/utils/HttpException.utils";
 
 class AuthService {
-  protected register = async <T extends IUser>(userData: T) => {
+  protected register = async(userData: IUser) => {
     const checkUser = await AuthModel.findOne({ email: userData.email });
     if (checkUser) {
       throw new HttpException(400, "User already exists");

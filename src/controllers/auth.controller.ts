@@ -6,7 +6,7 @@ import { NextFunction, Request, Response } from "express";
 class AuthController extends LoginService {
     public userRegister = async (req: Request<{}, {}, IUser>, res:Response, next: NextFunction) => {
         try {
-        const user = await this.register<IUser>(req.body);
+        const user = await this.register(req.body);
         res.status(STATUS.CREATED).json(user);
         } catch (error) {
             next(error)
