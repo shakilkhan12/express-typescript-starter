@@ -1,6 +1,5 @@
 import LoginService from "@/services/auth.service";
-import { STATUS } from "@/typescript";
-import { IUser } from "@/typescript/interfaces";
+import { STATUS, IUser } from "@/typescript";
 import { NextFunction, Request, Response } from "express";
 
 class AuthController extends LoginService {
