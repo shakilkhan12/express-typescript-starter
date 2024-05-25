@@ -4,6 +4,7 @@ import { HttpException } from "@/utils/HttpException.utils";
 import { comparePassword, hashPassword } from "@/utils/password.utils";
 import { CONFIG } from "@/config";
 import { IUser } from "@/typescript/interfaces";
+import { STATUS } from "@/typescript";
 
 // Define an interface that extends Mongoose's Document to include the methods
 interface IUserDocument extends IUser, Document {
@@ -67,7 +68,7 @@ userSchema.methods.comparePassword = async function (candidatePassword: string) 
     const isMatch = await comparePassword(candidatePassword, this.password);
     return isMatch;
   } catch (err: any) {
-    throw new HttpException(401, err.message);
+    throw new HttpException(STATUS.BAD_REQUEST, err.message);
   }
 };
 
@@ -79,6 +80,4 @@ userSchema.methods.generateAuthToken = function (expiresIn = "1w") {
 
 // Create the model
 const AuthModel: IUserModel = model<IUserDocument, IUserModel>("User", userSchema);
-
-AuthModel.createIndexes({ unique: true });
 export { AuthModel };

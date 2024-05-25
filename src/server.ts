@@ -12,7 +12,6 @@ import { dbConnection } from "@/database/connection";
 const app = express();
 const PORT = 5000;
 
-
 app.use(cors({ credentials: true, origin: process.env.CLIENT }));
 app.use(express.json());
 app.use(bodyParser.json());

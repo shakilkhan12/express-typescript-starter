@@ -4,22 +4,21 @@ import { IUser } from "@/typescript/interfaces";
 import { NextFunction, Request, Response } from "express";
 
 class AuthController extends LoginService {
-    public userRegister = async (req: Request<{}, {}, IUser>, res:Response, next: NextFunction) => {
+    public static userRegister = async (req: Request<{}, {}, IUser>, res:Response, next: NextFunction) => {
         try {
-        const user = await this.register(req.body);
+        const user = await LoginService.register(req.body);
         res.status(STATUS.CREATED).json(user);
         } catch (error) {
             next(error)
         }
     }
-    public userLogin = async (req: Request, res:Response, next: NextFunction) => {
+    public static userLogin = async (req: Request, res:Response, next: NextFunction) => {
         try {
-        const user = await this.login(req.body);
+        const user = await LoginService.login(req.body);
         res.status(STATUS.SUCCESS).json(user);
         } catch (error) {
             next(error)
         }
     }
 }
-const authController = new AuthController();
-export {authController}
+export { AuthController }
